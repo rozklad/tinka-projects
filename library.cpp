@@ -73,21 +73,8 @@ int main()
     string choice;
     cout << "Ktoru knihu si si vybral? ";
     cin >> choice;
-
-    while (book_genre == "detektivka")
-    {
-        for (int i = 0; i < 5; i++)
-        {
-            if (choice == "Sleeping Murder")
-            {
-                cout << "Kniha " << choice << " je dostupna a ma ID: " << id_detectives[i];
-            }
-            else if (choice == "DA VINCI CODE")
-            {
-                cout << "Kniha " << choice << " je dostupna a ma ID " << id_detectives[i];
-            }
-        }
-    }
+    getline(cin, choice);
+    cout << choice;
 
     return 0;
 }
