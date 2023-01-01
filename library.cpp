@@ -69,5 +69,25 @@ int main()
         return 1;
     }
 
+    cout << endl;
+    string choice;
+    cout << "Ktoru knihu si si vybral? ";
+    cin >> choice;
+
+    while (book_genre == "detektivka")
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            if (choice == "Sleeping Murder")
+            {
+                cout << "Kniha " << choice << " je dostupna a ma ID: " << id_detectives[i];
+            }
+            else if (choice == "DA VINCI CODE")
+            {
+                cout << "Kniha " << choice << " je dostupna a ma ID " << id_detectives[i];
+            }
+        }
+    }
+
     return 0;
 }
