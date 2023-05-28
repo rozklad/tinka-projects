@@ -11,20 +11,46 @@
     </head>
     <body>
 
-
-        <div class="jumbotron text-center">
+        <!-- 
+         <div class="jumbotron text-center">
             <button type="button" class="btn btn-danger" onclick="saySomething('this is 1st button')">
                 button 
             </button>
             <button type="button" class="btn btn-danger" onclick="saySomething('this is 2nd button')">
                 button
             </button>
-        </div>
+        </div> -->
        
+        
+     <div class="jumbotron text-center">
+        <button class="btn btn-danger" onclick="goCoCo()">
+            Go CoCo
+        </button>
+      </div>
+
+    <div class="jumbotron text-center">
+        <button class="btn btn-danger coffee-btn" onclick="goCoCo()">
+            Get coffee
+        </button>
+        <button class="btn btn-danger coffee-btn" onclick="goCoCo()">
+            Get coffee
+        </button>
+        <button class="btn btn-danger coffee-btn" onclick="goCoCo()">
+            Get coffee
+        </button>
+    </div>
+    
+
+    <div class="jumbotron text-center">
+        <button class="btn btn-primary lala-btn">
+            Not Listening
+        </button>
+    </div>
+
 
         <!-- javascript -->
         <script>
-            function saySomething(message = 'goodbye', whisper = false) {
+           function saySomething(message = 'goodbye', whisper = false) {
                 console.log(message);
             }
 
@@ -32,6 +58,33 @@
             saySomething('dog');
             saySomething();
             saySomething('hello');
+       
+            const body = document.querySelector('body');
+            body.style.backgroundColor = '#C1C';
+
+            function goCoCo() {
+                document.body.style.backgroundColor = '#C00';
+            }
+
+            const coffeeButton = document.querySelectorAll('.coffee-btn');
+            coffeeButton.onclick = function() {
+                document.body.style.backgroundColor = '#00FDFF'
+            }
+            coffeeButton.onmouseenter = goCoCo;
+        
+
+        const lalaButton = document.querySelector('.lala-btn');
+
+        function notListening() {
+            document.body.style.backgroundColor = '#FFF700';
+        }
+
+        lalaButton.addEventListener('click', notListening);
+        lalaButton.addEventListener('mouseenter', goCoCo);
+
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(button => button.addEventListener('mouseleave', notListening));
+
         </script>
     </body>
 </html>
