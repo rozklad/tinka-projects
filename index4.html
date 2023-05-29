@@ -21,8 +21,6 @@
         </style>
     </head>
     <body>
-
-        
         <button type="button" class="btn-crazy btn btn-lg btn-danger">
             Click me!
         </button>
@@ -37,6 +35,7 @@
         <script>
             const crazyButtons = document.querySelectorAll('.btn-crazy');
 
+
             function moveButton(event) {
                 const button = event.target;
 
@@ -46,7 +45,6 @@
                 button.style.top = offsetTop + 'px';
                 button.style.left = offsetLeft + 'px';
             }
-
 
             crazyButtons.forEach(button => button.addEventListener('mouseenter', moveButton));
         </script>
