@@ -79,13 +79,7 @@
                             </p>
                         </div>
                     </li>
-                </ul>
-            </div>
-        </div>
 
-        <div class="container">
-            <div class="accordion">
-                <ul class="list-unstyled">
                     <li class="open">
                         <div class="question">
                             <h2>What's for dinner?</h2>
@@ -98,13 +92,7 @@
                             </p>
                         </div>
                     </li>
-                </ul>
-            </div>
-        </div>
 
-        <div class="container">
-            <div class="accordion">
-                <ul class="list-unstyled">
                     <li class="open">
                         <div class="question">
                             <h2>Is JavaScript awesome?</h2>
@@ -130,8 +118,14 @@
 
             function toggleAccordion() {
                 const thisItem = this.parentNode;
-                console.log(this.parentNode);
-                thisItem.classList.toggle('open');
+
+                items.forEach(item => {
+                    if (thisItem == item) {
+                        thisItem.classList.toggle('open');
+                        return;
+                    }
+                    item.classList.remove('open');
+                });
             }
 
             questions.forEach(question => question.addEventListener('click', toggleAccordion));
