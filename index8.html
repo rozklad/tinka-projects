@@ -104,13 +104,7 @@
             </form>
         </div>
 
-
         <div class="bookmarks-list content"></div>
-
-
-
-
-
 
         <!-- javascript -->
         <script>
@@ -131,10 +125,24 @@
 
             input.addEventListener('focusin', showFloater);
             input.addEventListener('focusout', closeFloater);
+            overlay.addEventListener('click', closeFloater);
             
             const bookmarksList = document.querySelector('.bookmarks-list');
             const bookmarkForm = document.querySelector('.bookmarm-form');
             const bookmarkInput = bookmarkForm.querySelector('input[type=text]');
+
+
+            function createBookmark(event) {
+                event.preventDefault();
+
+                const title = bookmarkInput.value;
+                const bookmark = document.createElement('a');
+                bookmark.className = 'bookmark';
+                bookmark.innerText = title;
+                bookmark.href = '#';
+                bookmark.target = '_blank';
+                bookmarksList.appendChild(bookmark);
+            }
 
 
             bookmarkForm.addEventListener('submit', createBookmark);
