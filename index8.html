@@ -152,6 +152,7 @@
                     title: title
                 };
                 bookmarks.push(bookmark);
+                fillBookmarksList(bookmarks);
 
 
             //    const title = bookmarkInput.value;
@@ -163,6 +164,28 @@
             //    bookmarksList.appendChild(bookmark);
 
                 bookmarkForm.reset();
+            }
+
+            function fillBookmarksList(bookmarks = []) {
+                const bookmarksHtml = '';
+
+                for (let i = 0; i < bookmarks.length; i++) {
+                    bookmarksHtml += `
+                        <a href="#" class="bookmark">
+                            ${bookmarks[i].title}
+                        </a>
+                    `;
+                }
+
+                // const bookmarksHtml = bookmarks.map((bookmark) => {
+                //    return `
+                //        <a href="#" class="bookmark">
+                //            ${bookmarks.title}
+                //        </a>
+                //    `;
+                // });
+
+                bookmarksList.innerHTML = bookmarksHtml;
             }
 
             bookmarkForm.addEventListener('submit', createBookmark);
