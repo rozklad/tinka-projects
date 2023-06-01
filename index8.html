@@ -140,18 +140,22 @@
             const bookmarksList = document.querySelector('.bookmarks-list');
             const bookmarkForm = document.querySelector('.bookmark-form');
             const bookmarkInput = bookmarkForm.querySelector('input[type=text]');
+            const bookmarks = [];
 
 
             function createBookmark(event) {
                 event.preventDefault();
 
-                const title = bookmarkInput.value;
-                const bookmark = document.createElement('a');
-                bookmark.className = 'bookmark';
-                bookmark.innerText = title;
-                bookmark.href = '#';
-                bookmark.target = '_blank';
-                bookmarksList.appendChild(bookmark);
+
+            //   const title = bookmarkInput.value;
+            //    const bookmark = document.createElement('a');
+            //    bookmark.className = 'bookmark';
+            //    bookmark.innerText = title;
+            //    bookmark.href = '#';
+            //    bookmark.target = '_blank';
+            //    bookmarksList.appendChild(bookmark);
+
+                bookmarkForm.reset();
             }
 
             bookmarkForm.addEventListener('submit', createBookmark);
