@@ -146,8 +146,15 @@
             function createBookmark(event) {
                 event.preventDefault();
 
+                // add a new bookmark to the bookmarks
+                const title = bookmarkInput.value;
+                const bookmark = {
+                    title: title
+                };
+                bookmarks.push(bookmark);
 
-            //   const title = bookmarkInput.value;
+
+            //    const title = bookmarkInput.value;
             //    const bookmark = document.createElement('a');
             //    bookmark.className = 'bookmark';
             //    bookmark.innerText = title;
