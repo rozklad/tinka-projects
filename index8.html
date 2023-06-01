@@ -94,18 +94,18 @@
         <div class="overlay"></div>
 
         <div class="floater content">
-            <div class="floater-top">
-                <input type="text" class="form-control" placeholder="What's on your mind?">
-            </div>
-            <div class="floater-bottom">
-                <button type="button" class="btn btn-primary btn-sm">Add</button>
-            </div>
+            <form class="bookmark-form">
+                <div class="floater-top">
+                    <input type="text" class="form-control" placeholder="What's on your mind?">
+                </div>
+                <div class="floater-bottom">
+                    <button type="submit" class="btn btn-primary btn-sm">Add</button>
+                </div>
+            </form>
         </div>
 
 
-        <div class="bookmarks-list content">
-            <a class="bookmark">bookmark here!</a>
-        </div>
+        <div class="bookmarks-list content"></div>
 
 
 
@@ -131,7 +131,14 @@
 
             input.addEventListener('focusin', showFloater);
             input.addEventListener('focusout', closeFloater);
-            overlay.addEventListener('click', closeFloater); 
+            
+            const bookmarksList = document.querySelector('.bookmarks-list');
+            const bookmarkForm = document.querySelector('.bookmarm-form');
+            const bookmarkInput = bookmarkForm.querySelector('input[type=text]');
+
+
+            bookmarkForm.addEventListener('submit', createBookmark);
+
         </script>
     </body>
 </html>
