@@ -151,8 +151,11 @@
                 const bookmark = {
                     title: title
                 };
+
                 bookmarks.push(bookmark);
                 fillBookmarksList(bookmarks);
+                storeBookmarks(bookmarks);
+                bookmarkForm.reset();
 
 
             //    const title = bookmarkInput.value;
@@ -162,30 +165,32 @@
             //    bookmark.href = '#';
             //    bookmark.target = '_blank';
             //    bookmarksList.appendChild(bookmark);
-
-                bookmarkForm.reset();
             }
 
             function fillBookmarksList(bookmarks = []) {
-                const bookmarksHtml = '';
 
-                for (let i = 0; i < bookmarks.length; i++) {
-                    bookmarksHtml += `
-                        <a href="#" class="bookmark">
-                            ${bookmarks[i].title}
+                const bookmarksHtml = bookmarks.map((bookmark) => {
+                   return `
+                      <a href="#" class="bookmark">
+                         ${bookmark.title}
                         </a>
                     `;
-                }
-
-                // const bookmarksHtml = bookmarks.map((bookmark) => {
-                //    return `
-                //        <a href="#" class="bookmark">
-                //            ${bookmarks.title}
-                //        </a>
-                //    `;
-                // });
+                }).join('');
 
                 bookmarksList.innerHTML = bookmarksHtml;
+
+                // let bookmarksHtml = '';
+                // for (let i = 0; i < bookmarks.length; i++) {
+                //     bookmarksHtml += `
+                //         <a href="#" class="bookmark">
+                //             ${bookmarks[i].title}
+                //         </a>
+                //     `;
+                // }
+            }
+
+            function storeBookmarks(bookmarks = []) {
+                localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
             }
 
             bookmarkForm.addEventListener('submit', createBookmark);
