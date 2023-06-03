@@ -75,7 +75,7 @@
                 z-index: 9;
             }
             .bookmark {
-                display: block;
+                display: flex;
                 background-color: #FFF;
                 color: #999;
                 padding: 20px;
@@ -96,6 +96,19 @@
                 border-bottom-left-radius: 5px;
                 border-bottom-right-radius: 5px;
                 border-bottom: 0;
+            }
+            .bookmark .img {
+                background-color: #DDD;
+                border-radius: 3px;
+                background-image: url('https://www.freecodecamp.org/news/content/images/2022/09/jonatan-pie-3l3RwQdHRHg-unsplash.jpg');
+                background-size: cover;
+                width: 80px;
+                height: 60px;
+                margin-right: 20px;
+            }
+            .bookmark .title {
+                display: flex;
+                align-items: center;
             }
         </style>
     </head>
@@ -174,7 +187,9 @@
                 const bookmarksHtml = bookmarks.map((bookmark) => {
                    return `
                       <a href="#" class="bookmark">
-                         ${bookmark.title}
+                        <div class="img"></div>
+                         <div class="title">${bookmark.title}</div>
+                         <span class="glyphicon glyphicon-remove"></span>
                         </a>
                     `;
                 }).join('');
