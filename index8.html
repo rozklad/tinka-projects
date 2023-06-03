@@ -106,7 +106,8 @@
                 border-radius: 3px;
                 background-image: url('https://www.freecodecamp.org/news/content/images/2022/09/jonatan-pie-3l3RwQdHRHg-unsplash.jpg');
                 background-size: cover;
-                width: 80px;
+                background-position: top center;
+                width: 100px;
                 height: 60px;
                 margin-right: 20px;
             }
@@ -178,12 +179,16 @@
 
             function createBookmark(event) {
                 event.preventDefault();
+                if (!bookmarkInput.value) {
+                    alert('WE NEEED INFOOO!!');
+                    return;
+                }
 
                 const url = encodeURIComponent(bookmarkInput.value);
 
                 // add a new bookmark to the bookmarks
                 // fetch(apiUrl + '/' + url + '?app_id=' + appId);
-                fetch(`${apiUrl}/${url}?app_id=${appId}`);
+                fetch(`${apiUrl}/${url}?app_id=${appId}`)
                     .then(response => response.json())
                     .then(data => {
                         const bookmark = {
@@ -196,6 +201,9 @@
                         fillBookmarksList(bookmarks);
                         storeBookmarks(bookmarks);
                         bookmarkForm.reset();
+                    })
+                    .catch(error => {
+                        alert('There was a problem getting info');
                     });
 
             //    const title = bookmarkInput.value;
