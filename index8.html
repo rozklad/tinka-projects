@@ -173,16 +173,17 @@
             const apiUrl = 'https://opengraph.io/api/1.0/site';
             const appId = '58858c7bcf07b61e64257391';
 
-            const myUrl = encodeURIComponent('https://www.youtube.com/watch?v=ImkctPURUTQ');
-
 
             fillBookmarksList(bookmarks)
 
             function createBookmark(event) {
                 event.preventDefault();
 
+                const url = encodeURIComponent(bookmarkInput.value);
+
                 // add a new bookmark to the bookmarks
-                fetch(apiUrl + '/' + myUrl + '?app_id=' + appId);
+                // fetch(apiUrl + '/' + url + '?app_id=' + appId);
+                fetch(`${apiUrl}/${url}?app_id=${appId}`);
                     .then(response => response.json())
                     .then(data => {
                         const bookmark = {
