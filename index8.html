@@ -170,6 +170,10 @@
             const bookmarkForm = document.querySelector('.bookmark-form');
             const bookmarkInput = bookmarkForm.querySelector('input[type=text]');
             const bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
+            const apiUrl = 'https://opengraph.io/api/1.0/site';
+            const appId = '58858c7bcf07b61e64257391';
+
+            const myUrl = encodeURIComponent('https://www.youtube.com/watch?v=ImkctPURUTQ');
 
 
             fillBookmarksList(bookmarks)
@@ -178,16 +182,20 @@
                 event.preventDefault();
 
                 // add a new bookmark to the bookmarks
-                const title = bookmarkInput.value;
-                const bookmark = {
-                    title: title
-                };
+                fetch(apiUrl + '/' + myUrl + '?app_id=' + appId);
+                    .then(response => response.json())
+                    .then(data => {
+                        const bookmark = {
+                            title: data.hybridGraph.title,
+                            image: data.hybridGraph.image,
+                            link: data.hybridGraph.url
+                        };
 
-                bookmarks.push(bookmark);
-                fillBookmarksList(bookmarks);
-                storeBookmarks(bookmarks);
-                bookmarkForm.reset();
-
+                        bookmarks.push(bookmark);
+                        fillBookmarksList(bookmarks);
+                        storeBookmarks(bookmarks);
+                        bookmarkForm.reset();
+                    });
 
             //    const title = bookmarkInput.value;
             //    const bookmark = document.createElement('a');
@@ -202,7 +210,7 @@
 
                 const bookmarksHtml = bookmarks.map((bookmark, i) => {
                    return `
-                      <a href="#" class="bookmark data-id="${i}">
+                      <a href="#" class="bookmark" data-id="${i}">
                         <div class="img"></div>
                          <div class="title">${bookmark.title}</div>
                          <span class="glyphicon glyphicon-remove">✕</span>
