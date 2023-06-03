@@ -240,14 +240,15 @@
             }
 
             function removeBookmark(event) {
-                if (!event.target.matches('.glyphicon-remove')) {
-                    return;
-                }
+                    if (!event.target.matches('.glyphicon-remove')) {
+                        return;
+                    }
 
-                const index = event.target.parentNode.dataset.id;
-                bookmarks.splice(index, 1);
-                fillBookmarksList(bookmarks);
-                storeBookmarks(bookmarks);
+                    const index = event.target.parentNode.dataset.id;
+                    bookmarks.splice(index, 1);
+                    fillBookmarksList(bookmarks);
+                    storeBookmarks(bookmarks);
+                    event.preventDefault();
             }
 
             function storeBookmarks(bookmarks = []) {
