@@ -6,8 +6,13 @@
     </head>
     <body>
         <div id="shopping-list">
-            <h1>{{header || 'Welcome'}}</h1>
-            <div class="add-item-form">
+            <div class="header">
+                <h1>{{header || 'Welcome'}}</h1>
+                <button v-if="editing" @click="doEdit(false)" class="btn btn-cancel">Cancel</button>
+                <button v-else @click="doEdit(true)" class="btn btn-primary">Add Item</button>
+            </div>
+
+            <div v-if="editing" class="add-item-form">
                 <input @keyup.enter="saveItem" type="text" v-model="newItem" placeholder="Add an Item">
                 <label>
                     <input type="checkbox" v-model="newItemHighPriority">
@@ -16,41 +21,47 @@
                     Save Item
                 </button>
             </div>
-
-            
-            {{newItem}} {{newItemHighPriority}}
-
-            <!-- radio button -->
-            <label>
-                <input type="radio" v-model="newItemPriority" value="low">Low
-            </label>
-            <label>
-                <input type="radio" v-model="newItemPriority" value="high">High
-            </label>
+            <p v-if="items.length === 0">No items!</p>
             <ul>
                 <li v-for="{id, label} in items" :key="id">{{label}}</li>
             </ul>
-
-            <!-- select -->
-            <label>
-                <select v-model="newItemPriority">
-                    <option value="low">Low</option>
-                    <option value="high">High</option>
-                </select>
-            </label>
-
-            <!-- checkbox high priority -->
-            <label>
-                <input type="checkbox" v-model="newItemHighPriority">Hight Priority
-            </label>
-
-            <!-- checkbox for multiple answ -->
-            <label><input type="checkbox" v-model="iceCreamFlavors" value="vanilla">Vanilla</label>
-            <label><input type="checkbox" v-model="iceCreamFlavors" value="chocolate">Chocolate</label>
-            <label><input type="checkbox" v-model="iceCreamFlavors" value="strawberry">Strawberry</label>
-            <label><input type="checkbox" v-model="iceCreamFlavors" value="cookies and cream">Cookies and Cream</label>
         </div>
 
+        <!--
+            <div>
+                radio button
+                <label>
+                    <input type="radio" v-model="newItemPriority" value="low">Low
+                </label>
+                <label>
+                    <input type="radio" v-model="newItemPriority" value="high">High
+                </label>
+                <ul>
+                    <li v-for="{id, label} in items" :key="id">{{label}}</li>
+                </ul>
+                
+                select
+                <label>
+                    <select v-model="newItemPriority">
+                        <option value="low">Low</option>
+                        <option value="high">High</option>
+                    </select>
+                </label>
+                
+                checkbox high priority
+                <label>
+                    <input type="checkbox" v-model="newItemHighPriority">Hight Priority
+                </label>
+                
+                checkbox for multiple answ 
+                <label><input type="checkbox" v-model="iceCreamFlavors" value="vanilla">Vanilla</label>
+                <label><input type="checkbox" v-model="iceCreamFlavors" value="chocolate">Chocolate</label>
+                <label><input type="checkbox" v-model="iceCreamFlavors" value="strawberry">Strawberry</label>
+                <label><input type="checkbox" v-model="iceCreamFlavors" value="cookies and cream">Cookies and Cream</label>
+                {{newItem}} {{newItemHighPriority}}
+            </div>
+        -->
+    
 
 
     <script src="https://unpkg.com/vue@next"></script>
@@ -59,19 +70,25 @@
             data() {
                 return {
                     header: "Shopping List App",
+                    editing: false,
                     newItem:  '',
                     newItemHighPriority: false,
                     iceCreamFlavors: [],
                     items: [
-                        {id: 1, label: "10 party hats" },    
-                        {id: 2, label: "2 board games" },   
-                        {id: 3, label: "20 cups" },    
+                        // {id: 1, label: "10 party hats" },    
+                        // {id: 2, label: "2 board games" },   
+                        // {id: 3, label: "20 cups" },    
                     ]
                 }
             },
             methods: {
                 saveItem() {
                     this.items.push({ id: this.items.length + 1, label: this.newItem })
+                    this.newItem = ""
+                },
+                doEdit(editing) {
+                    this.editing = editing
+                    this.newItem = ""
                 }
             }
         }).mount('#shopping-list')
