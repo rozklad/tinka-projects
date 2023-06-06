@@ -7,6 +7,13 @@
     <body>
         <div id="shopping-list">
             <h1>{{header}}</h1>
+            <input v-model="newItem" type="text" placeholder="Add an item">
+            <label>
+                <input type="radio" v-model="newItemPriority" value="low">Low
+            </label>
+            <label>
+                <input type="radio" v-model="newItemPriority" value="high">High
+            </label>
             <ul>
                 <li v-for="{id, label} in items" :key="id">{{label}}</li>
             </ul>
@@ -20,11 +27,13 @@
             data() {
                 return {
                     header: "Shopping List App",
-                    items: {
-                        'item-1' : {id: 1, label: "10 party hats" },    
-                        'item-2' : {id: 2, label: "2 board games" },   
-                        'item-3' : {id: 3, label: "20 cups" },    
-                    }
+                    newItem:  '',
+                    newItemPriority: 'low',
+                    items: [
+                        {id: 1, label: "10 party hats" },    
+                        {id: 2, label: "2 board games" },   
+                        {id: 3, label: "20 cups" },    
+                    ]
                 }
             }
         }).mount('#shopping-list')
