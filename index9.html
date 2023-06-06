@@ -21,6 +21,7 @@
                     Save Item
                 </button>
             </div>
+            <a v-bind:href="newItem">Dynamic Link</a>
             <p v-if="items.length === 0">No items!</p>
             <ul>
                 <li v-for="{id, label} in items" :key="id">{{label}}</li>
