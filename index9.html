@@ -14,6 +14,7 @@
 
             <div v-if="editing" class="add-item-form">
                 <input @keyup.enter="saveItem" type="text" v-model="newItem" placeholder="Add an Item">
+                <p class="counter">{{characterCount}}/200</p>
                 <label>
                     <input type="checkbox" v-model="newItemHighPriority">
                 </label>
@@ -25,13 +26,10 @@
             <a v-bind:href="newItem">Dynamic Link</a>
             <p v-if="items.length === 0">No items!</p>
             <ul>
-                <li v-for="item in items" :key="item.id" :class="{strikeout: item.purchased, priority: item.highPriority}" class="static-class">{{item.label}}</li>
                 <li v-for="item in items" :key="item.id" 
-                    :class="[
-                    {strikeout: item.purchased},
-                    {priority: item.highPriority},
-                    'statics-class'
-                    ]"
+                    @click="togglePurchased(item)"
+                    :class="{strikeout: item.purchased, priority: item.highPriority}" 
+                    class="static-class"
                 >{{item.label}}</li>
             </ul>
         </div>
@@ -92,14 +90,24 @@
                     ]
                 }
             },
+            computed: {
+                characterCount() {
+                    return this.newItem.length
+                }
+            },
             methods: {
                 saveItem() {
-                    this.items.push({ id: this.items.length + 1, label: this.newItem })
+                    this.items.push({ id: this.items.length + 1, label: this.newItem, highPriority: this.newItemHighPriority })
                     this.newItem = ""
+                    this.newItemHighPriority = ""
                 },
                 doEdit(editing) {
                     this.editing = editing
                     this.newItem = ""
+                    this.newItemHighPriority = ""
+                },
+                togglePurchased(item) {
+                    item.purchased = !item.purchased
                 }
             }
         }).mount('#shopping-list')
