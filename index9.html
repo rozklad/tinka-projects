@@ -27,7 +27,14 @@
                     <option value="high">High</option>
                 </select>
             </label>
-            {{newItem}} {{newItemPriority}}
+
+            <!-- checkbox high priority-->
+            <label>
+                <input type="checkbox" v-model="newItemHighPriority">Hight Priority
+            </label>
+
+
+            {{newItem}} {{newItemHighPriority}}
         </div>
 
 
@@ -39,7 +46,7 @@
                 return {
                     header: "Shopping List App",
                     newItem:  '',
-                    newItemPriority: 'low',
+                    newItemHighPriority: false,
                     items: [
                         {id: 1, label: "10 party hats" },    
                         {id: 2, label: "2 board games" },   
