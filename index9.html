@@ -17,14 +17,15 @@
                 <label>
                     <input type="checkbox" v-model="newItemHighPriority">
                 </label>
-                <button @click="saveItem" class="btn btn-primary">
+                <!-- <button v-bind:disabled="newItem.length < 5" @click="saveItem" class="btn btn-primary"> -->
+                <button v-bind:disabled="newItem.length === 0" @click="saveItem" class="btn btn-primary">
                     Save Item
                 </button>
             </div>
             <a v-bind:href="newItem">Dynamic Link</a>
             <p v-if="items.length === 0">No items!</p>
             <ul>
-                <li v-for="{id, label} in items" :key="id">{{label}}</li>
+                <li v-for="{id, label} in items" :key="{id, label}.id" :class="{strikeout: {id, label}.purchased}">{{label}}</li>
             </ul>
         </div>
 
@@ -61,6 +62,8 @@
                 <label><input type="checkbox" v-model="iceCreamFlavors" value="cookies and cream">Cookies and Cream</label>
                 {{newItem}} {{newItemHighPriority}}
             </div>
+            link 
+            <a v-bind:href="newItem">Dynamic Link</a>
         -->
     
 
@@ -76,9 +79,9 @@
                     newItemHighPriority: false,
                     iceCreamFlavors: [],
                     items: [
-                        // {id: 1, label: "10 party hats" },    
-                        // {id: 2, label: "2 board games" },   
-                        // {id: 3, label: "20 cups" },    
+                        {id: 1, label: "10 party hats", purchased: true },    
+                        {id: 2, label: "2 board games", purchased: true },   
+                        {id: 3, label: "20 cups", purchased: false },    
                     ]
                 }
             },
