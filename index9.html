@@ -28,8 +28,9 @@
                 <li v-for="item in items" :key="item.id" :class="{strikeout: item.purchased, priority: item.highPriority}" class="static-class">{{item.label}}</li>
                 <li v-for="item in items" :key="item.id" 
                     :class="[
-                    item.purchased ? 'strikeout text-gray' : 'underlined',
-                    item.highPriority ? 'priority' : ''
+                    {strikeout: item.purchased},
+                    {priority: item.highPriority},
+                    'statics-class'
                     ]"
                 >{{item.label}}</li>
             </ul>
